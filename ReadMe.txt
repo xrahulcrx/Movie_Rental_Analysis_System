@@ -1,9 +1,9 @@
-Movie Rental OLAP Analysis (PostgreSQL)
+#Movie Rental OLAP Analysis (PostgreSQL)
 
-Perform advanced analysis on movie rental data using OLAP operations. 
+###Perform advanced analysis on movie rental data using OLAP operations. 
 
 
-1. About the Project
+##1. About the Project
 
 This SQL project includes:
 
@@ -15,7 +15,7 @@ Running OLAP queries
 
 Analyzing rental behavior by genre, customer, movie, and months
 
-2. Database Setup
+##2. Database Setup
 Create Database
 
 CREATE DATABASE MovieRental;
