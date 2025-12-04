@@ -39,7 +39,7 @@ Insert Sample Data
 OLAP Operations Demonstrated
 ----------------------------
 
--- a) Drill Down: Analyze rentals from genre to individual movie level. 
+### a) Drill Down: Analyze rentals from genre to individual movie level. 
 
 select movie_id, genre, count(*) as rentals, sum(rental_fee) as revenue
 from rental_data
@@ -48,16 +48,16 @@ order by genre, revenue desc
 
 
 
--- b) Rollup: Summarize total rental fees by genre and then overall. 
+### b) Rollup: Summarize total rental fees by genre and then overall. 
 
 select  coalesce(genre, 'All Genres') as genre_list, count(*) as rentals, round(sum(rental_fee), 2) as revenue
 from rental_data
 group by rollup (genre)
 order by revenue desc nulls last; 
 
--- Cube: Analyze total rental fees across combinations of genre, rental date, and customer. 
+### Cube: Analyze total rental fees across combinations of genre, rental date, and customer. 
 
--- v1 : using date
+### v1 : using date
 
 select 
     genre,
@@ -70,7 +70,7 @@ order by genre, rental_month, customer_id;
 
 
 
--- v2 using month year -  optimised
+### v2 using month year -  optimised
 
 select coalesce(genre, 'ZAll Genre') as  genre_list,
 		coalesce(to_char(date_trunc('Month', rental_date), 'Mon YYYY'), 'All months') as month_year, 
@@ -81,7 +81,7 @@ group by cube(genre, date_trunc('Month', rental_date), customer_id)
 order by genre_list, date_trunc('Month', rental_date), customer_id;
 
 
--- d) Slice: Extract rentals only from the ‘Action’ genre. 
+### d) Slice: Extract rentals only from the ‘Action’ genre. 
 
 select customer_id, rental_date, rental_fee
 from rental_data
@@ -89,7 +89,7 @@ where genre = 'Action'
 order by rental_date
 
 
--- e) Dice: Extract rentals where GENRE = 'Action' or 'Drama' and RENTAL_DATE is in the last 3 months.
+### e) Dice: Extract rentals where GENRE = 'Action' or 'Drama' and RENTAL_DATE is in the last 3 months.
 
 select movie_id, customer_id, genre, rental_date, coalesce(return_date::text, 'Yet to return') as return_date, rental_fee
 from rental_data
