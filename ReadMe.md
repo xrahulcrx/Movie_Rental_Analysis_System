@@ -40,11 +40,12 @@ OLAP Operations Demonstrated
 ----------------------------
 
 ### a) Drill Down: Analyze rentals from genre to individual movie level. 
-
+```
 select movie_id, genre, count(*) as rentals, sum(rental_fee) as revenue
 from rental_data
 group by genre, movie_id
 order by genre, revenue desc
+```
 
 
 
