@@ -62,7 +62,6 @@ from rental_data
 group by rollup (genre)
 order by grouping(genre), revenue desc nulls last; 
 
-
 -- c) Cube: Analyze total rental fees across combinations of genre, rental date, and customer. 
 
 -- v1 : using date
@@ -84,7 +83,7 @@ order by grouping(genre), grouping(date_trunc('month', rental_date)::date), grou
 select coalesce(genre, 'All Genre') as  genre_list,
 		coalesce(to_char(date_trunc('Month', rental_date), 'Mon YYYY'), 'All months') as month_year, 
 		coalesce(customer_id::text, 'All customer') as customer_id, 
-		round(sum(rental_fee),2) as revenue
+		round(sum(rental_fee), 2) as revenue
 from rental_data
 group by cube(genre, date_trunc('Month', rental_date), customer_id)
 order by grouping(genre), grouping(date_trunc('Month', rental_date)), grouping(customer_id),
