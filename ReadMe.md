@@ -57,7 +57,7 @@ group by rollup (genre)
 order by revenue desc nulls last; 
 ```
 
-### Cube: Analyze total rental fees across combinations of genre, rental date, and customer. 
+### c) Cube: Analyze total rental fees across combinations of genre, rental date, and customer. 
 
 ### v1 : using date
 ```
